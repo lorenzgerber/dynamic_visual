@@ -28,10 +28,14 @@ function addMenu(getNumberOfRecipes){
   for( var i = 0; i < posts.length; i++ ){
     var menuItem = document.createElement('li');
     var link = document.createElement('a');
-    //link.href = '#recipe_' + i;
+    link.href = '#recipe_' + i;
     link.textContent = posts[i].getElementsByTagName("h4")[0].innerHTML;
     var currentId = 'recipe_' + i;
-    link.addEventListener("click", function() { alert("shit");}, false);
+    link.addEventListener("click", function() {
+      setRecipeVisible(event.target.getAttribute('href').substring(1));
+      event.preventDefault();
+      return false;
+    });
 
     menuItem.appendChild(link);
     menu.appendChild(menuItem);
