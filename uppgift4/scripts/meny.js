@@ -6,6 +6,14 @@ function generateMenu() {
   setRecipeVisible('recipe_1');
 }
 
+/**
+*addIdsToRecipes
+*
+* function iterates over 'post' class items
+* in 'primaryContent' and adds ids according
+* the * pattern 'recipe_' + sequence_number
+*
+*/
 function addIdsToRecipes(){
   var primaryContent = document.getElementById('primarycontent');
   var posts = primaryContent.getElementsByClassName('post');
@@ -14,12 +22,19 @@ function addIdsToRecipes(){
   }
 }
 
-function setRecipeVisible(postId){
-  setAllRecipeInvisible();
-  var post = document.getElementById(postId);
-  post.style.display = 'block';
-}
-
+/**
+* addMenu
+*
+* Main function to construct the side menu.
+* Fetches all 'post' class items from 'primaryContent'
+* into an array. The array is the iterated to
+* obtain the 'h4' title as menu item text. In the
+* same iteration, list and link items are created.
+* the link's are also loaded with a click event
+* function.
+* Finally, the menu is attached to it's place on
+* the papge.
+*/
 function addMenu(getNumberOfRecipes){
   var menu = document.createElement('ul');
   var primaryContent = document.getElementById('primarycontent');
@@ -45,10 +60,31 @@ function addMenu(getNumberOfRecipes){
   }
 }
 
+/**
+* setAllRecipeInvisible
+*
+* Helper function to set the style
+* of all posts to display: none.
+*/
 function setAllRecipeInvisible(){
   var primaryContent = document.getElementById('primarycontent');
   var posts = primaryContent.getElementsByClassName('post');
   for( var i = 0; i < posts.length; i++ ){
     posts[i].style.display = 'none';
   }
+}
+
+/**
+* setRecipeVisible
+*
+* Helper function that sets the respective
+* post provided as input argument to style
+* display: 'block'
+*
+* @param postId string acc pattern: 'recipe_' + seq_number
+*/
+function setRecipeVisible(postId){
+  setAllRecipeInvisible();
+  var post = document.getElementById(postId);
+  post.style.display = 'block';
 }
